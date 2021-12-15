@@ -2,6 +2,7 @@
 #pip install pypiwin32
 
 #https://github.com/SavinaRoja/PyUserInput
+#pip install pyuserinput
 from pymouse import PyMouse
 from pykeyboard import PyKeyboard
 import time

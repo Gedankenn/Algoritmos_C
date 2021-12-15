@@ -4,6 +4,7 @@
 typedef struct pessoa{
 	char nome[50];
 	int horas[24];
+	int horas_mes[13][24];
 	int total;
 	int mes;
 	struct pessoa *prox;
@@ -82,7 +83,7 @@ int main(void){
 	int dia,mes,ano,hora,minuto;
 	int cont2;
 	char fdp[50];
-	int mescp, anocp, diacp;
+	int mescp, anocp, diacp, mes_inicion, mes_final;
 
 	data=fopen("historico.txt","r");
 	fscanf(data, "%*[^\n]\n", NULL);
@@ -93,6 +94,7 @@ int main(void){
 	cont=0;
 	cont2=0;
 	mescp=mes;
+	mes_inicio=mes;
 	diacp=dia;
 	anocp=ano;
 
@@ -139,12 +141,13 @@ int main(void){
 						q->horas[hora]++;
 						q->mes++;
 						q->total++;
+						q->horas_mes[mes][hora]++;
 					}
 
 
 				}
 			}
-			if(mes!=mescp && dia<30){
+			if(mes!=mescp && dia<28){
 				if(aux2==0){
 					q=G.inicio;
 					printf("\nmes; ");
@@ -187,6 +190,7 @@ int main(void){
 
 	}
 	printf("\n %d/%d; ",mescp,anocp);
+	mes_final=mescp;
 	q=G.inicio;
 	while(q!=NULL){
 		printf("%d; ",q->mes );
@@ -225,6 +229,24 @@ int main(void){
 		}
 		cont++;
 	}
+	printf("\n\nhoras_por_mes");
+	q=G.inicio;
+	int_cont=mes_inicio;
+	while(q!=NULL){
+		printf("%s; \n",q->nome);
+		cont=mes_inicio;
+		while(cont<mes_final){
+			hora=0;
+			printf("%d; ",cont);
+			while(hora<24){
+				printf("%d; %d; \n",hora,q->horas_mes[hora] );
+				hora++;
+			}
+			printf("\n");
+			cont++;
+		}
+	}
+
 
 	
 	fclose(data);
