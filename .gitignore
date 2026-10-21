@@ -1,0 +1,13 @@
+# Compiled C/C++ output
+*.exe
+*.o
+
+# Java / NetBeans build output
+*.class
+build/
+dist/
+!PO/Pacotes/ExemplosPackage/geometria/teste.class
+
+# Python
+__pycache__/
+*.pyc
